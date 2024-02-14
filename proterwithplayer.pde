@@ -1,16 +1,16 @@
-int tileSize = 15; // higher is zoomed in
-float scale = 0.001; // lower is more quality
-float rizz = random(0, 0.5);
+int tileSize = 10; // higher is zoomed in
+float scale = 0.01; // lower is more quality
+float rizz = 0.2;
 long seed = round(random(0, 10000000));
-float xoff = 0;
-float yoff = 0;
-float speed = 0.001;
+float xoff = 50;
+float yoff = 50;
+float speed = 0.1;
 
 void setup() {
    size(1920, 1080);
    noStroke();
    colorMode(HSB);
-   noiseDetail(8, 0.6); // changes stuff check docs
+ //  noiseDetail(8, 0.6); // changes stuff check docs
    noiseSeed(seed);
    drawTerrain();
    drawPlayer();
@@ -22,6 +22,8 @@ void draw() {
   drawPlayer();
   fill(0);
   text(rizz, 50, 50);
+  text(xoff, 50, 100);
+  text(yoff, 50, 150);
   fill(0);
 }
 
@@ -49,17 +51,17 @@ void keyPressed() {
   {
     yoff-=speed;
   }
-  if(key == 's')
+  if(key == 's' && yoff > -1 + speed)
   {
     yoff+=speed;
   }
-  if(key == 'a')
+  if(key == 'a' && xoff > 0 + speed)
   {
     xoff-=speed;
   }
   if(key == 'd')
   {
-    xoff+=speed;
+    xoff+=speed;ss
   }
 }
 
