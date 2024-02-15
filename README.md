@@ -13,3 +13,4 @@ Changelog
 - Added movement (adds offset to noise)
 - Zoomed in camera (raised tile size and lowered scale)
 - Made read me file
+- Added ui with a border and money variable
