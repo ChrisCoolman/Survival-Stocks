@@ -6,7 +6,7 @@ float xoff = 50;
 float yoff = 50;
 float speed = 0.01;
 boolean ui = false;
-float money = 0;
+int money = 0;
 
 void setup() {
    size(1920, 1080);
@@ -20,28 +20,42 @@ void setup() {
 }
 
 void draw() {
+  noStroke();
   drawTerrain();
   drawPlayer();
   ui();
   fill(0);
   text(rizz, 50, 50);
-  text(xoff, 50, 100);
-  text(yoff, 50, 150);
+  text(mouseX, 50, 100);
+  text(mouseY, 50, 150);
   fill(0);
 }
 
 void ui() {
   if(ui)
   {
-    fill(#76503D); // border color
-    rect(440, 140, 1070, 820); // border
+    strokeWeight(12);
+    stroke(#7E3E1D);
     fill(#AF6A47); // menu color
     rect(450, 150, 1050, 800); // menu
     textAlign(CENTER);
     fill(#25D100); // money color
-    text("$" + round(money), width / 2, height / 2 - 300); // money
-    
+    text("$" + money, width / 2, height / 2 - 300); // money
+    fill(#7E3E1D);
+    rect(900, 500, 100, 50);
+    fill(255);
+    text("Sell", 950, 540);
   }
+}
+
+void mousePressed() {
+   if(ui)
+   {
+     if(mouseX >= 900 && mouseX <= 1000 && mouseY >= 500 && mouseY <= 550)
+     {
+       money++;
+     }
+   }
 }
 
 void drawPlayer() {
@@ -97,10 +111,10 @@ void mouseWheel(MouseEvent event) {
   float e = event.getCount();
   if(e < 0)
   {
-    rizz+=0.01;
+    rizz+=0.001;
   } else
   {
-    rizz-=0.01;
+    rizz-=0.001;
   }
 }
 
