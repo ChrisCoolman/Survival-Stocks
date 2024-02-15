@@ -1,10 +1,12 @@
-int tileSize = 10; // higher is zoomed in
+int tileSize = 15; // higher is zoomed in
 float scale = 0.01; // lower is more quality
 float rizz = 0.2;
 long seed = round(random(0, 10000000));
 float xoff = 50;
 float yoff = 50;
-float speed = 0.1;
+float speed = 0.01;
+boolean ui = false;
+float money = 0;
 
 void setup() {
    size(1920, 1080);
@@ -20,11 +22,26 @@ void setup() {
 void draw() {
   drawTerrain();
   drawPlayer();
+  ui();
   fill(0);
   text(rizz, 50, 50);
   text(xoff, 50, 100);
   text(yoff, 50, 150);
   fill(0);
+}
+
+void ui() {
+  if(ui)
+  {
+    fill(#76503D); // border color
+    rect(440, 140, 1070, 820); // border
+    fill(#AF6A47); // menu color
+    rect(450, 150, 1050, 800); // menu
+    textAlign(CENTER);
+    fill(#25D100); // money color
+    text("$" + round(money), width / 2, height / 2 - 300); // money
+    
+  }
 }
 
 void drawPlayer() {
@@ -47,11 +64,22 @@ void keyPressed() {
     noiseSeed(seed);
     drawTerrain();
   }
-  if(key == 'w')
+  if(key == 'g')
+  {
+    ui = true;
+  }
+  if(key == 'f')
+  {
+    if(ui == true)
+      ui = false;
+    else
+      ui = true;
+  }
+  if(key == 'w' && yoff > 0 + speed)
   {
     yoff-=speed;
   }
-  if(key == 's' && yoff > -1 + speed)
+  if(key == 's')
   {
     yoff+=speed;
   }
@@ -61,7 +89,7 @@ void keyPressed() {
   }
   if(key == 'd')
   {
-    xoff+=speed;ss
+    xoff+=speed;
   }
 }
 
