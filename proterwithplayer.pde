@@ -11,6 +11,8 @@ boolean up = false;
 boolean down = false;
 boolean left = false;
 boolean right = false;
+int frameNum = 0;
+int speedChange = 2; // higher the number the slower the player (doesnt break everything when slowing down)
 
 void setup() {
    size(1920, 1080);
@@ -21,9 +23,11 @@ void setup() {
    drawTerrain();
    drawPlayer();
    textSize(50);
+   frameRate(60);
 }
 
 void draw() {
+  frameNum++;
   noStroke();
   drawTerrain();
   checkMovement();
@@ -124,16 +128,16 @@ void mouseWheel(MouseEvent event) {
 }
 
 void checkMovement() {
-  if (up) {
+  if (up && frameNum % speedChange == 0) {
     yoff-=speed;
   }
-  if (down) {
+  if (down && frameNum % speedChange == 0) {
     yoff+=speed;
   }
-  if (left) {
+  if (left && frameNum % speedChange == 0) {
     xoff-=speed;
   }
-  if (right) {
+  if (right && frameNum % speedChange == 0) {
     xoff+=speed;
   }
 }
