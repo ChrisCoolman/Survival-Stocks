@@ -7,6 +7,10 @@ float yoff = 50;
 float speed = 0.01;
 boolean ui = false;
 int money = 0;
+boolean up = false;
+boolean down = false;
+boolean left = false;
+boolean right = false;
 
 void setup() {
    size(1920, 1080);
@@ -22,6 +26,7 @@ void setup() {
 void draw() {
   noStroke();
   drawTerrain();
+  checkMovement();
   drawPlayer();
   ui();
   fill(0);
@@ -91,19 +96,19 @@ void keyPressed() {
   }
   if(key == 'w' && yoff > 0 + speed)
   {
-    yoff-=speed;
+    up = true;
   }
   if(key == 's')
   {
-    yoff+=speed;
+    down = true;
   }
   if(key == 'a' && xoff > 0 + speed)
   {
-    xoff-=speed;
+    left = true;
   }
   if(key == 'd')
   {
-    xoff+=speed;
+    right = true;
   }
 }
 
@@ -115,6 +120,36 @@ void mouseWheel(MouseEvent event) {
   } else
   {
     rizz-=0.001;
+  }
+}
+
+void checkMovement() {
+  if (up) {
+    yoff-=speed;
+  }
+  if (down) {
+    yoff+=speed;
+  }
+  if (left) {
+    xoff-=speed;
+  }
+  if (right) {
+    xoff+=speed;
+  }
+}
+
+void keyReleased() {
+if (key == 'w') {
+    up = false;
+  }
+if (key == 's') {
+    down = false;
+  }
+if (key == 'a') {
+    left = false;
+  }
+if (key == 'd') {
+    right = false;
   }
 }
 
