@@ -14,6 +14,9 @@ boolean right = false;
 int frameNum = 0;
 int speedChange = 2; // higher the number the slower the player (doesnt break everything when slowing down)
 
+// ITEMS
+item cod;
+
 void setup() {
    size(1920, 1080);
    noStroke();
@@ -24,9 +27,13 @@ void setup() {
    drawPlayer();
    textSize(50);
    frameRate(60);
+   
+   // items
+   cod = new item(2, 0, 1);
 }
 
 void draw() {
+  cod.update();
   frameNum++;
   noStroke();
   drawTerrain();
@@ -53,7 +60,7 @@ void ui() {
     fill(#7E3E1D);
     rect(900, 500, 100, 50);
     fill(255);
-    text("Sell", 950, 540);
+    text(":" + cod.getPrice(), 950, 540);
   }
 }
 
@@ -89,7 +96,7 @@ void keyPressed() {
   }
   if(key == 'g')
   {
-    ui = true;
+    cod.setAmount(1);
   }
   if(key == 'f')
   {
@@ -132,7 +139,7 @@ void checkMovement() {
     yoff-=speed;
   }
   if (down && frameNum % speedChange == 0) {
-    yoff+=speed;
+  yoff+=speed;
   }
   if (left && frameNum % speedChange == 0) {
     xoff-=speed;
