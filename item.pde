@@ -36,7 +36,7 @@ class item {
       rand = round(random(0, 5));
       if(rand <=3)
       {
-        price=rarity/2;
+        price-=rarity/2;
         previous =false;
       }
       else
@@ -55,5 +55,10 @@ class item {
   void addAmount(int num)
   {
     amount+=num;
+  }
+  
+  int getAmount()
+  {
+    return amount;
   }
 }
