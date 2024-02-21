@@ -1,3 +1,5 @@
+import org.guilhermesilveira.Timers;
+
 int tileSize = 15; // higher is zoomed in
 float scale = 0.01; // lower is more quality
 float rizz = 0.2;
@@ -19,6 +21,8 @@ item cod;
 
 void setup() {
    size(1920, 1080);
+  // runs every second, 10 times, invokes a lambda
+  new Timers(this).add(1000, 10, () -> tick());
    noStroke();
    colorMode(HSB);
  //  noiseDetail(8, 0.6); // changes stuff check docs
@@ -27,15 +31,15 @@ void setup() {
    drawPlayer();
    textSize(50);
    frameRate(60);
-   
+//   tick();
    // items
    cod = new item(2, 0, 1);
 }
 
 void draw() {
-  cod.update();
   frameNum++;
   noStroke();
+//  cod.update();
   drawTerrain();
   checkMovement();
   drawPlayer();
@@ -45,6 +49,11 @@ void draw() {
   text(mouseX, 50, 100);
   text(mouseY, 50, 150);
   fill(0);
+}
+
+void tick()
+{  
+  cod.update();
 }
 
 void ui() {
@@ -96,7 +105,7 @@ void keyPressed() {
   }
   if(key == 'g')
   {
-    cod.setAmount(1);
+    cod.addAmount(1);
   }
   if(key == 'f')
   {
