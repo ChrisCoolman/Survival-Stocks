@@ -52,7 +52,7 @@ class item {
     return price;
   }
   
-  void setAmount(int num)
+  void addAmount(int num)
   {
     amount+=num;
   }
