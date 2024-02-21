@@ -45,7 +45,7 @@ void draw() {
   drawPlayer();
   ui();
   fill(0);
-  text(rizz, 50, 50);
+  text(cod.getAmount(), 50, 50);
   text(mouseX, 50, 100);
   text(mouseY, 50, 150);
   fill(0);
@@ -69,7 +69,7 @@ void ui() {
     fill(#7E3E1D);
     rect(900, 500, 100, 50);
     fill(255);
-    text(":" + cod.getPrice(), 950, 540);
+    text("Cod:" + cod.getPrice(), 950, 540);
   }
 }
 
@@ -105,7 +105,10 @@ void keyPressed() {
   }
   if(key == 'g')
   {
-    cod.addAmount(1);
+    if(cod.getAmount() > 0)
+    {
+      cod.addAmount(1);
+    }  
   }
   if(key == 'f')
   {
