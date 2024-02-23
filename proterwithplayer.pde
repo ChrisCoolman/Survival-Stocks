@@ -4,8 +4,8 @@ int tileSize = 15; // higher is zoomed in
 float scale = 0.01; // lower is more quality
 float rizz = 0.2;
 long seed = round(random(0, 10000000));
-float xoff = 50;
-float yoff = 50;
+float xoff = 500;
+float yoff = 500;
 float speed = 0.01;
 boolean ui = false;
 int money = 0;
@@ -17,8 +17,19 @@ int frameNum = 0;
 int speedChange = 2; // higher the number the slower the player (doesnt break everything when slowing down)
 
 // ITEMS
-item cod;
 
+//water
+item cod;
+//beach
+item sand;
+//grass
+item dirt;
+//forest
+item twig;
+//mountain
+item rock;
+//snow
+item purewater;
 void setup() {
    size(1920, 1080);
   // runs every second, 10 times, invokes a lambda
@@ -33,7 +44,19 @@ void setup() {
    frameRate(60);
 //   tick();
    // items
+   
+   //walter white refrence???!?!?!?!!
    cod = new item(2, 0, 1);
+   //beach
+   sand = new item(1, 0, 1);
+   //grass
+   dirt = new item(2, 0, 1);
+   //forest
+   twig = new item(3, 0, 1);
+   //mountain
+   rock = new item(3, 0, 1);
+   //snow
+   purewater = new item(5, 0, 2);
 }
 
 void draw() {
@@ -69,23 +92,27 @@ void ui() {
     fill(#7E3E1D);
     rect(900, 500, 100, 50);
     fill(255);
-    text("Cod:" + cod.getPrice(), 950, 540);
+    text("Cod:" + cod.getPrice(), 950, 540); // cod button
   }
 }
 
 void mousePressed() {
-   if(ui)
+   if(ui) // if ui is open
    {
      if(mouseX >= 900 && mouseX <= 1000 && mouseY >= 500 && mouseY <= 550)
      {
-       money++;
+       if(cod.getAmount() > 0)
+       {
+         money+=cod.getPrice();
+         cod.addAmount(-1);
+       }
      }
    }
 }
 
 void drawPlayer() {
    fill(0);
-   rect(width / 2, height / 2, tileSize * 2, tileSize * 2); 
+   rect(width / 2, height / 2, tileSize, tileSize); 
 }
 
 void drawTerrain() {
@@ -93,22 +120,22 @@ void drawTerrain() {
      for(int j = 0; j < height/tileSize; j++) {
        fill(getColour(i, j));
        rect(i * tileSize, j * tileSize, tileSize, tileSize);
+       
      }
    }
 }
 
 void keyPressed() {
+/*
   if(key == ' ') {
     seed = round(random(0, 10000000));
     noiseSeed(seed);
     drawTerrain();
   }
+  */
   if(key == 'g')
   {
-    if(cod.getAmount() > 0)
-    {
       cod.addAmount(1);
-    }  
   }
   if(key == 'f')
   {
@@ -134,7 +161,7 @@ void keyPressed() {
     right = true;
   }
 }
-
+/*
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
   if(e < 0)
@@ -145,7 +172,7 @@ void mouseWheel(MouseEvent event) {
     rizz-=0.001;
   }
 }
-
+*/
 void checkMovement() {
   if (up && frameNum % speedChange == 0) {
     yoff-=speed;
