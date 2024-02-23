@@ -1,6 +1,6 @@
 import org.guilhermesilveira.Timers;
 
-int tileSize = 15; // higher is zoomed in
+int tileSize = 15; // higher is zoomed in // currently only 5 works for check, ill update later.
 float scale = 0.01; // lower is more quality
 float rizz = 0.2;
 long seed = round(random(0, 10000000));
@@ -213,6 +213,40 @@ if (key == 'a') {
 if (key == 'd') {
     right = false;
   }
+ if (key == 'c') {
+    checkColor();
+    System.out.println(xoff + ", " + yoff);
+  }
+}
+
+void checkColor() {
+  float blockColor = noise(xoff + 1.93, yoff + 1.09) - rizz;
+  if(blockColor < 0.1)
+  {
+    System.out.println("Deep Ocean");
+  } else if(blockColor < 0.2)
+  {
+    System.out.println("Ocean");
+  } else if(blockColor < 0.3)
+  {
+    System.out.println("Sand");
+  } else if(blockColor < 0.4)
+  {
+    System.out.println("Grass");
+  } else if(blockColor < 0.5)
+  {
+    System.out.println("Forest");
+  } else if(blockColor < 0.6)
+  {
+    System.out.println("Low Mouintain");
+  } else if(blockColor < 0.7)
+  {
+    System.out.println("High Mountain");
+  } else
+  {
+    System.out.println("Mountain Peak");
+  }
+  System.out.println(blockColor);
 }
 
 color getColour(int x, int y) {
