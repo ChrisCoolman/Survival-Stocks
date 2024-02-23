@@ -67,8 +67,9 @@ void draw() {
   checkMovement();
   drawPlayer();
   ui();
+  textSize(50);
   fill(0);
-  text(cod.getAmount(), 50, 50);
+  //text("Cod: " + cod.getAmount(), 50, 50);
   text(mouseX, 50, 100);
   text(mouseY, 50, 150);
   fill(0);
@@ -77,6 +78,11 @@ void draw() {
 void tick()
 {  
   cod.update();
+  sand.update();
+  dirt.update();
+  twig.update();
+  rock.update();
+  purewater.update(); // its pure becasue it from the snow melting !?!?!??!?!??!
 }
 
 void ui() {
@@ -89,10 +95,16 @@ void ui() {
     textAlign(CENTER);
     fill(#25D100); // money color
     text("$" + money, width / 2, height / 2 - 300); // money
+    textSize(20);
     fill(#7E3E1D);
     rect(900, 500, 100, 50);
     fill(255);
-    text("Cod:" + cod.getPrice(), 950, 540); // cod button
+    text("Sell Cod: $" + cod.getPrice(), 950, 530); // cod button
+    fill(0);
+    rect(540, 300, 250, 50);
+    fill(255);
+    textAlign(CORNER);
+    text("You have: " + cod.getAmount() + " Cod", 585, 330);
   }
 }
 
