@@ -1,6 +1,6 @@
 import org.guilhermesilveira.Timers;
 
-int tileSize = 15; // higher is zoomed in // currently only 5 works for check, ill update later.
+int tileSize = 15; // higher is zoomed in 
 float scale = 0.01; // lower is more quality
 float rizz = 0.2;
 long seed = round(random(0, 10000000));
@@ -220,7 +220,7 @@ if (key == 'd') {
 }
 
 void checkColor() {
-  float blockColor = noise(xoff + 1.93, yoff + 1.09) - rizz;
+  float blockColor = noise(xoff + 9.65/tileSize, yoff + 5.46/tileSize) - rizz; //mostly works on all sizes now // for 5: 1.93, 1.09
   if(blockColor < 0.1)
   {
     System.out.println("Deep Ocean");
