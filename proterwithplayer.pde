@@ -15,14 +15,16 @@ boolean left = false;
 boolean right = false;
 int frameNum = 0;
 int speedChange = 2; // higher the number the slower the player (doesnt break everything when slowing down)
+String currentTile = "";
+float skib;
 
 // ITEMS
 
-//water
+//ocean
 item cod;
 //beach
 item sand;
-//grass
+//plains
 item dirt;
 //forest
 item twig;
@@ -60,6 +62,7 @@ void setup() {
 }
 
 void draw() {
+  currentTile = checkColor();
   frameNum++;
   noStroke();
 //  cod.update();
@@ -70,8 +73,18 @@ void draw() {
   textSize(50);
   fill(0);
   //text("Cod: " + cod.getAmount(), 50, 50);
+  textAlign(BASELINE);
+  text("Biome: " + currentTile, 50, 50); // keep this in final version
   text(mouseX, 50, 100);
   text(mouseY, 50, 150);
+  
+  // amount of items
+  text("Cod: " + cod.getAmount(), 1650, 50);
+  text("Sand: " + sand.getAmount(), 1650, 100);
+  text("Dirt: " + dirt.getAmount(), 1650, 150);
+  text("Twig: " + twig.getAmount(), 1650, 200);
+  text("Rock: " + rock.getAmount(), 1650, 250);
+  text("Purewater: " + purewater.getAmount(), 1650, 300);
   fill(0);
 }
 
@@ -97,24 +110,23 @@ void ui() {
     text("$" + money, width / 2, height / 2 - 300); // money
     textSize(20);
     fill(#7E3E1D);
-    rect(900, 500, 100, 50);
+    rect(500, 275, 100, 50);
     fill(255);
-    text("Sell Cod: $" + cod.getPrice(), 950, 530); // cod button
-    fill(0);
-    rect(540, 300, 250, 50);
-    fill(255);
-    textAlign(CORNER);
-    text("You have: " + cod.getAmount() + " Cod", 585, 330);
+    text("Sell Cod: $" + cod.getPrice(), 550, 305); // cod button
   }
 }
 
 void mousePressed() {
+  print("Mouse Pressed");
    if(ui) // if ui is open
    {
-     if(mouseX >= 900 && mouseX <= 1000 && mouseY >= 500 && mouseY <= 550)
+     print("UI OPEN");
+     if(mouseX >= 500 && mouseX <= 600 && mouseY >= 600 && mouseY <= 650)
      {
+       print("MOUSE IN POSITION");
        if(cod.getAmount() > 0)
        {
+         print("cod");
          money+=cod.getPrice();
          cod.addAmount(-1);
        }
@@ -147,7 +159,70 @@ void keyPressed() {
   */
   if(key == 'g')
   {
-      cod.addAmount(1);
+     if(checkColor().equals("Deep Ocean"))
+     {
+       skib = random(1, 1);
+       if(skib == 1)
+       {
+         cod.addAmount(1);
+       }
+     }
+     else if(checkColor().equals("Ocean"))
+     {
+       skib = random(1, 1);
+       if(skib == 1)
+       {
+         cod.addAmount(1);
+       }
+     }
+     else if(checkColor().equals("Beach"))
+     {
+       skib = random(1, 1);
+       if(skib == 1)
+       {
+         sand.addAmount(1);
+       }
+     }
+     else if(checkColor().equals("Plains"))
+     {
+       skib = random(1, 1);
+       if(skib == 1)
+       {
+         dirt.addAmount(1);
+       }
+     }
+     else if(checkColor().equals("Forest"))
+     {
+       skib = random(1, 1);
+       if(skib == 1)
+       {
+         twig.addAmount(1);
+       }       
+     }
+     else if(checkColor().equals("Low Mountain"))
+     {
+       skib = random(1, 1);
+       if(skib == 1)
+       {
+         rock.addAmount(1);
+       }       
+     }
+     else if(checkColor().equals("High Mountain"))
+     {
+       skib = random(1, 1);
+       if(skib == 1)
+       {
+         rock.addAmount(1);
+       }       
+     }
+     else if(checkColor().equals("Mountain Peak"))
+     {
+       skib = random(1, 1);
+       if(skib == 1)
+       {
+         purewater.addAmount(1);
+       }       
+     }
   }
   if(key == 'f')
   {
@@ -219,34 +294,33 @@ if (key == 'd') {
   }
 }
 
-void checkColor() {
+String checkColor() {
   float blockColor = noise(xoff + 9.65/tileSize, yoff + 5.46/tileSize) - rizz; //mostly works on all sizes now // for 5: 1.93, 1.09
   if(blockColor < 0.1)
   {
-    System.out.println("Deep Ocean");
+    return "Deep Ocean";
   } else if(blockColor < 0.2)
   {
-    System.out.println("Ocean");
+    return "Ocean";
   } else if(blockColor < 0.3)
   {
-    System.out.println("Sand");
+    return "Beach";
   } else if(blockColor < 0.4)
   {
-    System.out.println("Grass");
+    return "Plains";
   } else if(blockColor < 0.5)
   {
-    System.out.println("Forest");
+    return "Forest";
   } else if(blockColor < 0.6)
   {
-    System.out.println("Low Mouintain");
+    return "Low Mountain";
   } else if(blockColor < 0.7)
   {
-    System.out.println("High Mountain");
+    return "High Mountain";
   } else
   {
-    System.out.println("Mountain Peak");
+    return "Mountain Peak";
   }
-  System.out.println(blockColor);
 }
 
 color getColour(int x, int y) {
