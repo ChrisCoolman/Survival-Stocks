@@ -4,7 +4,26 @@ Creators:
 Chris and Max
 
 Liscense:
-You must get permission from one of the creators to use :)
+You must get permission from one of the creators to copy it :)
+
+How to use
+
+copy the contents of proterwithplayer.pde into processing
+make a new processing tab called item and copy the contents of item.pde
+then go to sketch > import libraries > manage libraries > libraries and search for timer
+install the library named timer by guuilherme silveira by clicking the install button
+close out the current window and run the processing project
+
+CONTROLS
+
+w - uo
+a - left
+s - down
+d - right
+f - open menu
+g - collect item
+left mouse button - interact with menu
+
 
 Changelog
 
