@@ -117,16 +117,12 @@ void ui() {
 }
 
 void mousePressed() {
-  print("Mouse Pressed");
    if(ui) // if ui is open
    {
-     print("UI OPEN");
-     if(mouseX >= 500 && mouseX <= 600 && mouseY >= 600 && mouseY <= 650)
+     if(mouseX >= 500 && mouseX <= 600 && mouseY >= 270 && mouseY <= 330)
      {
-       print("MOUSE IN POSITION");
        if(cod.getAmount() > 0)
        {
-         print("cod");
          money+=cod.getPrice();
          cod.addAmount(-1);
        }
