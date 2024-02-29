@@ -9,54 +9,57 @@ class item {
     this.amount = amount;
     this.rarity = rarity;
   }
-  
+
   void update()
   {
-    if(price == 0)
+    if (price == 0)
     {
       price+=rarity;
       previous = true;
-    }
-    else if(previous == true)
-    {
-       rand = round(random(0, 5));
-       if(rand <= 3)
-       {
-         price+=rarity;
-         previous = true;
-       }
-       else
-       {
-         price-=rarity/2;
-         previous = false;
-       }
-    }
-    else
+    } else if (previous == true)
     {
       rand = round(random(0, 5));
-      if(rand <=3)
+      if (rand <= 3)
+      {
+        price+=rarity;
+        previous = true;
+      } else
+      {
+        price-=rarity/2;
+        previous = false;
+      }
+    } else
+    {
+      rand = round(random(0, 5));
+      if (rand <=3)
       {
         price-=rarity/2;
         previous =false;
-      }
-      else
+      } else
       {
         price+=rarity;
         previous = true;
       }
     }
-    
   }
   int getPrice()
   {
     return price;
   }
-  
+
+  void setPrice(int price) {
+    this.price = price;
+  }
+
+  void setAmount(int amount) {
+    this.amount = amount;
+  }
+
   void addAmount(int num)
   {
     amount+=num;
   }
-  
+
   int getAmount()
   {
     return amount;
