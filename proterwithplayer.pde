@@ -31,6 +31,10 @@ String msg = "";
 String save = "";
 String saveYoff = "", saveXoff = "", saveSeed = "", saveMoney = "", saveCodAmount = "", saveSandAmount = "", saveDirtAmount = "", saveTwigAmount = "", saveRockAmount = "", savePurewaterAmount = "", saveCodPrice = "", saveSandPrice = "", saveDirtPrice = "", saveTwigPrice = "", saveRockPrice = "", savePurewaterPrice = "";
 int saveStage = 1;
+int food = 1;
+double collectionAmount = 1;
+double collectionPrice = 2500;
+double collectionBasePrice = 2500;
 
 // ITEMS
 
@@ -82,6 +86,7 @@ void setup() {
 }
 
 void draw() {
+  collectionPrice = Math.floor(collectionBasePrice * Math.pow(1.15, collectionAmount));
   if (screen == 1) {
     textSize(200);
     background(100, 255, 255);
@@ -160,25 +165,106 @@ void ui() {
     text("$" + money, width / 2, height / 2 - 300); // money
     textSize(20);
     fill(#7E3E1D);
-    rect(500, 275, 100, 50);
+    rect(550, 275, 100, 50);
     fill(255);
-    text("Sell Cod: $" + cod.getPrice(), 550, 305); // cod button
+    text("Sell Cod: $" + cod.getPrice(), 600, 305); // cod button
+    // sand button
+    textSize(20);
+    fill(#7E3E1D);
+    rect(700, 275, 100, 50);
+    fill(255);
+    text("Sell Sand: $" + sand.getPrice(), 750, 305); 
+    // i dyed my hair green to prove to you i dont look like a minecraft dirt block
+    textSize(20);
+    fill(#7E3E1D);
+    rect(850, 275, 100, 50);
+    fill(255);
+    text("Sell Dirt: $" + dirt.getPrice(), 900, 305); 
+    //built like a twig
+    textSize(20);
+    fill(#7E3E1D);
+    rect(1000, 275, 100, 50);
+    fill(255);
+    text("Sell Twig: $" + twig.getPrice(), 1050, 305); 
+    // dwayne button
+    textSize(20);
+    fill(#7E3E1D);
+    rect(1150, 275, 100, 50);
+    fill(255);
+    text("Sell Rock: $" + rock.getPrice(), 1200, 305);     
+    // lets be real this wont happen
+    textSize(15);
+    fill(#7E3E1D);
+    rect(1300, 275, 100, 50);
+    fill(255);
+    text("Sell Purewater: $" + purewater.getPrice(), 1350, 305);     
+    // money
+    textSize(15);
+    fill(#7E3E1D);
+    rect(550, 475, 100, 50);
+    fill(255);
+    text("Better Collecting: $" + collectionPrice, 600, 505);
   }
 }
 
 void mousePressed() {
-  print("Mouse Pressed");
   if (ui) // if ui is open
   {
-    print("UI OPEN");
-    if (mouseX >= 500 && mouseX <= 600 && mouseY >= 600 && mouseY <= 650)
+    if (mouseX >= 550 && mouseX <= 650 && mouseY >= 275 && mouseY <= 325)
     {
-      print("MOUSE IN POSITION");
       if (cod.getAmount() > 0)
       {
-        print("cod");
         money+=cod.getPrice();
         cod.addAmount(-1);
+      }
+    }
+    else if(mouseX >= 700 && mouseX <= 800 && mouseY >= 275 && mouseY <= 325)
+    {
+      if(sand.getAmount() > 0)
+      {
+        money+=sand.getPrice();
+        sand.addAmount(-1);
+      }
+    }
+    else if(mouseX >=850 && mouseX <= 950 && mouseY >= 275 && mouseY <=325)
+    {
+      if(dirt.getAmount() > 0)
+      {
+        money+=dirt.getPrice();
+        dirt.addAmount(-1);
+      }
+    }
+    else if(mouseX >=1000 && mouseX <=1100&&mouseY>=275&&mouseY<=325)
+    {
+      if(twig.getAmount() > 0)
+      {
+        money+=twig.getPrice();
+        twig.addAmount(-1);
+      }
+    }
+    else if(mouseX >=1150 && mouseX<=1250&&mouseY>=275&&mouseY<=325)
+    {
+      if(rock.getAmount() > 0)
+      {
+        money+=rock.getPrice();
+        rock.addAmount(-1);
+      }
+    }
+    else if(mouseX >=1300 && mouseX<=1400&&mouseY>=275&&mouseY<=325)
+    {
+      if(purewater.getAmount() > 0)
+      {
+        money+=purewater.getPrice();
+        purewater.addAmount(-1);
+      }
+    }
+    else if (mouseX >= 550 && mouseX <= 650 && mouseY >= 475 && mouseY <= 525)
+    {
+      if (money >= collectionPrice)
+      {
+        money-=collectionPrice;
+        food+=1;
+        collectionAmount++;
       }
     }
   }
@@ -223,56 +309,56 @@ void keyPressed() {
       skib = random(1, 1);
       if (skib == 1)
       {
-        cod.addAmount(1);
+        cod.addAmount(food);
       }
     } else if (checkColor().equals("Ocean"))
     {
       skib = random(1, 1);
       if (skib == 1)
       {
-        cod.addAmount(1);
+        cod.addAmount(food);
       }
     } else if (checkColor().equals("Beach"))
     {
       skib = random(1, 1);
       if (skib == 1)
       {
-        sand.addAmount(1);
+        sand.addAmount(food);
       }
     } else if (checkColor().equals("Plains"))
     {
       skib = random(1, 1);
       if (skib == 1)
       {
-        dirt.addAmount(1);
+        dirt.addAmount(food);
       }
     } else if (checkColor().equals("Forest"))
     {
       skib = random(1, 1);
       if (skib == 1)
       {
-        twig.addAmount(1);
+        twig.addAmount(food);
       }
     } else if (checkColor().equals("Low Mountain"))
     {
       skib = random(1, 1);
       if (skib == 1)
       {
-        rock.addAmount(1);
+        rock.addAmount(food);
       }
     } else if (checkColor().equals("High Mountain"))
     {
       skib = random(1, 1);
       if (skib == 1)
       {
-        rock.addAmount(1);
+        rock.addAmount(food);
       }
     } else if (checkColor().equals("Mountain Peak"))
     {
       skib = random(1, 1);
       if (skib == 1)
       {
-        purewater.addAmount(1);
+        purewater.addAmount(food);
       }
     }
   }
