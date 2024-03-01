@@ -8,7 +8,7 @@ You must get permission from one of the creators to copy it :)
 
 How to use
 
-copy the contents of proterwithplayer.pde into processing
+copy the contents of main.pde into processing
 make a new processing tab called item and copy the contents of item.pde
 then make another new tab called TEXTBOX and copy and paste the contents of TEXTBOX.pde. After that go to sketch > import libraries > manage libraries > libraries and search for timer
 install the library named Timer by Guilherme Silveira by clicking the install button
