@@ -1,4 +1,4 @@
-import org.guilhermesilveira.Timers;
+import org.guilhermesilveira.Timers; // third party library that is used to control stock market ticks
 
 
 int tileSize = 15; // higher is zoomed in
@@ -33,9 +33,11 @@ String save = "";
 String saveYoff = "", saveXoff = "", saveSeed = "", saveMoney = "", saveCodAmount = "", saveSandAmount = "", saveDirtAmount = "", saveTwigAmount = "", saveRockAmount = "", savePurewaterAmount = "", saveCodPrice = "", saveSandPrice = "", saveDirtPrice = "", saveTwigPrice = "", saveRockPrice = "", savePurewaterPrice = "", saveColAmount = "", saveColPrice = "";
 int saveStage = 1;
 int food = 1;
-double collectionAmount = 1;
+double collectionAmount = 0;
 double collectionPrice = 2500;
 double collectionBasePrice = 2500;
+
+boolean greal = true;
 
 // ITEMS
 
@@ -219,48 +221,48 @@ void mousePressed() {
     {
       if (cod.getAmount() > 0)
       {
-        money+=cod.getPrice();
-        cod.addAmount(-1);
+        money+=cod.getPrice() * cod.getAmount();
+        cod.addAmount(-cod.getAmount());
       }
     }
     else if(mouseX >= 700 && mouseX <= 800 && mouseY >= 275 && mouseY <= 325)
     {
       if(sand.getAmount() > 0)
       {
-        money+=sand.getPrice();
-        sand.addAmount(-1);
+        money+=sand.getPrice() * sand.getAmount();
+        sand.addAmount(-sand.getAmount());
       }
     }
     else if(mouseX >=850 && mouseX <= 950 && mouseY >= 275 && mouseY <=325)
     {
       if(dirt.getAmount() > 0)
       {
-        money+=dirt.getPrice();
-        dirt.addAmount(-1);
+        money+=dirt.getPrice() * dirt.getAmount();
+        dirt.addAmount(-dirt.getAmount());
       }
     }
     else if(mouseX >=1000 && mouseX <=1100&&mouseY>=275&&mouseY<=325)
     {
       if(twig.getAmount() > 0)
       {
-        money+=twig.getPrice();
-        twig.addAmount(-1);
+        money+=twig.getPrice() * twig.getAmount();
+        twig.addAmount(-twig.getAmount());
       }
     }
     else if(mouseX >=1150 && mouseX<=1250&&mouseY>=275&&mouseY<=325)
     {
       if(rock.getAmount() > 0)
       {
-        money+=rock.getPrice();
-        rock.addAmount(-1);
+        money+=rock.getPrice() * rock.getAmount();
+        rock.addAmount(-rock.getAmount());
       }
     }
     else if(mouseX >=1300 && mouseX<=1400&&mouseY>=275&&mouseY<=325)
     {
       if(purewater.getAmount() > 0)
       {
-        money+=purewater.getPrice();
-        purewater.addAmount(-1);
+        money+=purewater.getPrice() * purewater.getAmount();
+        purewater.addAmount(-purewater.getAmount());
       }
     }
     else if (mouseX >= 550 && mouseX <= 650 && mouseY >= 475 && mouseY <= 525)
@@ -307,8 +309,9 @@ void keyPressed() {
    drawTerrain();
    }
    */
-  if (key == 'g')
+  if (key == 'g' && greal)
   {
+    greal = false;
     if (checkColor().equals("Deep Ocean"))
     {
       skib = random(1, 1);
@@ -445,6 +448,9 @@ void keyReleased() {
   if (key == 'c') {
     checkColor();
     System.out.println(xoff + ", " + yoff);
+  }
+  if(key == 'g') {
+    greal = true;
   }
 }
 
