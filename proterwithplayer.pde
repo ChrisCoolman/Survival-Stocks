@@ -54,7 +54,7 @@ item purewater;
 void setup() {
   size(1920, 1080);
   // runs every second, 10 times, invokes a lambda
-  new Timers(this).add(1000, 10, () -> tick());
+  new Timers(this).add(1000, 10000000, () -> tick());
   noStroke();
   colorMode(HSB);
   //  noiseDetail(8, 0.6); // changes stuff check docs
