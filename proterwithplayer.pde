@@ -1,5 +1,6 @@
 import org.guilhermesilveira.Timers;
 
+
 int tileSize = 15; // higher is zoomed in
 float scale = 0.01; // lower is more quality
 float rizz = 0.2;
@@ -29,7 +30,7 @@ ArrayList<TEXTBOX> textboxes = new ArrayList<TEXTBOX>();
 boolean send = false;
 String msg = "";
 String save = "";
-String saveYoff = "", saveXoff = "", saveSeed = "", saveMoney = "", saveCodAmount = "", saveSandAmount = "", saveDirtAmount = "", saveTwigAmount = "", saveRockAmount = "", savePurewaterAmount = "", saveCodPrice = "", saveSandPrice = "", saveDirtPrice = "", saveTwigPrice = "", saveRockPrice = "", savePurewaterPrice = "";
+String saveYoff = "", saveXoff = "", saveSeed = "", saveMoney = "", saveCodAmount = "", saveSandAmount = "", saveDirtAmount = "", saveTwigAmount = "", saveRockAmount = "", savePurewaterAmount = "", saveCodPrice = "", saveSandPrice = "", saveDirtPrice = "", saveTwigPrice = "", saveRockPrice = "", savePurewaterPrice = "", saveColAmount = "", saveColPrice = "";
 int saveStage = 1;
 int food = 1;
 double collectionAmount = 1;
@@ -140,6 +141,10 @@ void draw() {
     fill(0);
   }
   if (screen == 5) {
+    background(0);
+    textSize(40);
+    fill(255);
+    text("Your save code is: " + save, width/2 - 850, height/2);
   }
 }
 
@@ -386,8 +391,9 @@ void keyPressed() {
     right = true;
   }
   if (key == 't') {
-    save = xoff + "*" + yoff + "*" + seed + "*" + money + "*" + cod.getAmount() + "*" + sand.getAmount() + "*" + dirt.getAmount() + "*" + twig.getAmount() + "*" + rock.getAmount() + "*" + purewater.getAmount() + "*" + cod.getPrice() + "*" + sand.getPrice() + "*" + dirt.getPrice() + "*" + twig.getPrice() + "*" + rock.getPrice() + "*" + purewater.getPrice();
+    save = xoff + "*" + yoff + "*" + seed + "*" + money + "*" + cod.getAmount() + "*" + sand.getAmount() + "*" + dirt.getAmount() + "*" + twig.getAmount() + "*" + rock.getAmount() + "*" + purewater.getAmount() + "*" + cod.getPrice() + "*" + sand.getPrice() + "*" + dirt.getPrice() + "*" + twig.getPrice() + "*" + rock.getPrice() + "*" + purewater.getPrice() + "*" + collectionAmount + "*" + collectionPrice;
     System.out.println(save);
+    screen = 5;
   }
   for (TEXTBOX t : textboxes) {
     if (t.KEYPRESSED(key, keyCode)) {
@@ -482,6 +488,10 @@ void readSave() {
         saveRockPrice = saveRockPrice + c;
       } else if (saveStage == 16) {
         savePurewaterPrice = savePurewaterPrice + c;
+      } else if (saveStage == 17) {
+        saveColAmount = saveColAmount + c;
+      } else if (saveStage == 18) {
+        saveColPrice = saveColPrice + c;
       }
     }
   }
@@ -489,6 +499,8 @@ void readSave() {
   yoff = Float.parseFloat(saveYoff);
   seed = Long.parseLong(saveSeed);
   money = Integer.parseInt(saveMoney);
+  collectionAmount = Double.parseDouble(saveColAmount);
+  collectionPrice = Double.parseDouble(saveColPrice);
   cod.setAmount(Integer.parseInt(saveCodAmount));
   sand.setAmount(Integer.parseInt(saveSandAmount));
   dirt.setAmount(Integer.parseInt(saveDirtAmount));
