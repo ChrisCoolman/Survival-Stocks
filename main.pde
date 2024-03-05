@@ -144,9 +144,9 @@ void draw() {
   }
   if (screen == 5) {
     background(0);
-    textSize(40);
+    textSize(30);
     fill(255);
-    text("Your save code is: " + save, width/2 - 850, height/2);
+    text("Your save code is: " + save, 10, height/2);
   }
 }
 
