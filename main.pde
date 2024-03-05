@@ -130,8 +130,8 @@ void draw() {
     //text("Cod: " + cod.getAmount(), 50, 50);
     textAlign(BASELINE);
     text("Biome: " + currentTile, 50, 50); // keep this in final version
-    text(mouseX, 50, 100);
-    text(mouseY, 50, 150);
+    //text(mouseX, 50, 100);
+    //text(mouseY, 50, 150);
 
     // amount of items
     text("Cod: " + cod.getAmount(), 1650, 50);
