@@ -144,9 +144,9 @@ void draw() {
   }
   if (screen == 5) {
     background(0);
-    textSize(30);
+    textSize(40);
     fill(255);
-    text("Your save code is: " + save, 10, height/2);
+    text("Your save code is: " + save, width/2 - 850, height/2);
   }
 }
 
@@ -272,6 +272,67 @@ void mousePressed() {
         money-=collectionPrice;
         food+=1;
         collectionAmount++;
+      }
+    }
+  }
+  else if (greal)
+  {
+    greal = false;
+    if (checkColor().equals("Deep Ocean"))
+    {
+      skib = random(1, 1);
+      if (skib == 1)
+      {
+        cod.addAmount(food);
+      }
+    } else if (checkColor().equals("Ocean"))
+    {
+      skib = random(1, 1);
+      if (skib == 1)
+      {
+        cod.addAmount(food);
+      }
+    } else if (checkColor().equals("Beach"))
+    {
+      skib = random(1, 1);
+      if (skib == 1)
+      {
+        sand.addAmount(food);
+      }
+    } else if (checkColor().equals("Plains"))
+    {
+      skib = random(1, 1);
+      if (skib == 1)
+      {
+        dirt.addAmount(food);
+      }
+    } else if (checkColor().equals("Forest"))
+    {
+      skib = random(1, 1);
+      if (skib == 1)
+      {
+        twig.addAmount(food);
+      }
+    } else if (checkColor().equals("Low Mountain"))
+    {
+      skib = random(1, 1);
+      if (skib == 1)
+      {
+        rock.addAmount(food);
+      }
+    } else if (checkColor().equals("High Mountain"))
+    {
+      skib = random(1, 1);
+      if (skib == 1)
+      {
+        rock.addAmount(food);
+      }
+    } else if (checkColor().equals("Mountain Peak"))
+    {
+      skib = random(1, 1);
+      if (skib == 1)
+      {
+        purewater.addAmount(food);
       }
     }
   }
@@ -452,6 +513,10 @@ void keyReleased() {
   if(key == 'g') {
     greal = true;
   }
+}
+
+void mouseReleased() {
+  greal = true;
 }
 
 void readSave() {
